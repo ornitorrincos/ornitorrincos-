@@ -12,7 +12,7 @@ xchg bx, bx
 push ebp
 mov ebp, esp
 mov edx, [ebp+8]
-mov eax, [ebp+10] ; 2 bytes for short
+mov eax, [ebp+12]
 out dx, al ; test with eax and al
 ret
 
