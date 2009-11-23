@@ -18,5 +18,7 @@ void kmain( void* mbd, unsigned int magic )
     /* Kernel starts here */
     /*kprint(boot_loader_name);*/
     mv_cursor(2, 0);
-    kprint("hello");
+    kprint(boot_loader_name);
+    mv_cursor(3, 0);
+    kprint("ornitorrincos calculator");
 }
