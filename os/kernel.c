@@ -1,4 +1,3 @@
-#include "kio.h"
 #include "vga.h"
 
 void kmain( void* mbd, unsigned int magic )
