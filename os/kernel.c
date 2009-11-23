@@ -1,4 +1,5 @@
 #include "kio.h"
+#include "vga.h"
 
 void kmain( void* mbd, unsigned int magic )
 {
@@ -16,5 +17,7 @@ void kmain( void* mbd, unsigned int magic )
     char * boot_loader_name =(char*) ((long*)mbd)[16];
     
     /* Kernel starts here */
-    kprint(boot_loader_name);
+    /*kprint(boot_loader_name);*/
+    mv_cursor(2, 0);
+    kprint("hello");
 }
