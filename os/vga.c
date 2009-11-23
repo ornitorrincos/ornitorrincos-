@@ -40,6 +40,9 @@ void mv_cursor(u32int row, u32int col)
 void clear_screen(void)
 {
     int i;
+    
+    videoram = (u8int*) VIDEO;
+    
     for(i=0;i<80*25;i++)
     {
         *videoram=0x0;
