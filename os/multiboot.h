@@ -15,6 +15,11 @@
    along with this program; if not, write to the Free Software
    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  */
 
+/* Check if it's already included */
+
+#ifndef MULTIBOOT_H
+#define MULTIBOOT_H
+
 /* Macros.  */
 
 /* The magic number for the Multiboot header.  */
@@ -117,3 +122,5 @@ typedef struct memory_map
 } memory_map_t;
 
 #endif /* ! ASM */
+
+#endif /* MULTIBOOT_H */

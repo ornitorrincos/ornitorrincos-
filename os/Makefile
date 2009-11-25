@@ -5,6 +5,7 @@ all:
 	i586-elf-gcc -o kernel.o -c kernel.c -Wall -Wextra -nostdlib -nostartfiles -nodefaultlibs -masm=intel
 	i586-elf-gcc -o vga.o -c vga.c -Wall -Wextra -nostdlib -nostartfiles -nodefaultlibs -masm=intel
 	i586-elf-gcc -o kstr.o -c kstr.c -Wall -Wextra -nostdlib -nostartfiles -nodefaultlibs -masm=intel
+	i586-elf-gcc -o memory.o -c memory.c -Wall -Wextra -nostdlib -nostartfiles -nodefaultlibs -masm=intel
 	i586-elf-ld -T linker.ld -o kernel.bin loader.o kernel.o byte.o vga.o kstr.o cpu_model.o
 clean:
 	rm loader.o
