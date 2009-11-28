@@ -6,26 +6,20 @@ u8int *videoram = (u8int*) 0xB8000;
 u32int grow = 0;
 u32int gcol = 0;
 
-void kprint(const char *str)
+/* prints a character to current cursor location */
+void kchar(const char c)
 {
-    u32int i = 0;
-    u32int len;
+    videoram = (u8int*) VIDEO + 2*((grow-80) + gcol);
     
-    videoram = (u8int*) VIDEO + 2*((grow*80) + gcol);
-    
-    /*videoram starts on first character byte*/
-    while(str[i] != '\0')
-    {
-        *videoram=str[i]; /*copy the letter to the videoram position*/
-        videoram++; /*move pointer to color byte*/
-        *videoram = 0x07; /*foreground and background colors*/
-        videoram++; /*move pointer to next character byte*/
-        i++; /*next character on string*/
-    }
-    len = kstrlen(str);
-    mv_cursor(grow+len+1, gcol);
+    *videoram=c;
+    videoram++;
+    *videoram= 0x07;
 }
 
+void kprint(const char *str)
+{
+    
+}
 
 void mv_cursor(u32int row, u32int col)
 {
@@ -47,9 +41,9 @@ void clear_screen(void)
     
     videoram = (u8int*) VIDEO;
     
-    for(i=0;i<80*25;i++)
+    for(i=0;i<80*24;i++)
     {
-        *videoram=0x0;
+        *videoram=0x00;
         videoram++;
         *videoram = 0x00;
         videoram++;

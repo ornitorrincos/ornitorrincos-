@@ -1,9 +1,11 @@
 #include "vga.h"
 #include "cpuid.h"
+#include "memory.h"
 
 void kmain( void* mbd, unsigned int magic )
 {
     char cpu[48];
+    u32int mem;
     /*specify intel syntax for asm*/
     asm(".intel_syntax noprefix\n");
     
@@ -20,6 +22,7 @@ void kmain( void* mbd, unsigned int magic )
     /* Kernel starts here */
     
     cpu_model(cpu);
+    mem = memsize((multiboot_info_t*) mbd);
     
     mv_cursor(1, 0);
     kprint(cpu);
