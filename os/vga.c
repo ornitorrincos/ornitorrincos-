@@ -7,13 +7,34 @@ u32int grow = 0;
 u32int gcol = 0;
 
 /* prints a character to current cursor location */
-void kchar(const char c)
+void kpchar(const char c)
 {
     videoram = (u8int*) VIDEO + 2*((grow-80) + gcol);
     
     *videoram=c;
     videoram++;
     *videoram= 0x07;
+}
+
+void kpint(const u32int num)
+{
+    int aux, count;
+    aux = num;
+    count = 0;
+    
+    do
+    {
+        /* We get the current  number's length */
+        while(aux>10)
+        {
+            aux = aux/10;
+            count++;
+        }
+        kpchar((const char*) 0x0+kdigit(num));
+        num = num-kdigit(num)*count;
+        count--;
+        
+    } while(count > 0);
 }
 
 void kprint(const char *str)
