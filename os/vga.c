@@ -14,12 +14,15 @@ void kpchar(const char c)
     *videoram=c;
     videoram++;
     *videoram= 0x07;
+    
+    mv_cursor(grow+1, gcol);
 }
 
 void kpint(const u32int num)
 {
-    int aux, count;
+    u32int aux, aux2, count;
     aux = num;
+    aux2 = num;
     count = 0;
     
     do
@@ -31,7 +34,7 @@ void kpint(const u32int num)
             count++;
         }
         kpchar((const char*) 0x0+kdigit(num));
-        num = num-kdigit(num)*count;
+        aux2 = aux2-kdigit(num)*count;
         count--;
         
     } while(count > 0);

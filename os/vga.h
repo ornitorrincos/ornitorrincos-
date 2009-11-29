@@ -6,7 +6,7 @@
 #define VIDEO 0xB8000
 
 void kpchar(const char c);
-void kpint(const int num);
+void kpint(const u32int num);
 void kprint(const char *str);
 void mv_cursor(u32int row, u32int col);
 void clear_screen(void);

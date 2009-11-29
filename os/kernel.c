@@ -22,12 +22,14 @@ void kmain( void* mbd, unsigned int magic )
     /* Kernel starts here */
     
     cpu_model(cpu);
-    mem = memsize((multiboot_info_t*) mbd);
+    mem = memsize((struct multiboot_info*) mbd);
     
-    mv_cursor(1, 0);
+    /*mv_cursor(1, 0);
     kprint(cpu);
     mv_cursor(2, 0);
     kprint(boot_loader_name);
     mv_cursor(3, 0);
-    kprint("ornitorrincos calculator");
+    kprint("ornitorrincos calculator");*/
+    
+    kpint(6543);
 }
