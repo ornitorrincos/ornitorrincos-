@@ -15,10 +15,25 @@ u32int kdigit(u32int num)
     u32int aux;
     u32int count;
     /* We get the number's length */
+    aux = num;
     while(aux>10)
     {
         aux = aux/10;
         count++;
     }
-    return count;
+    return aux;
+}
+
+u32int kdigitlen(u32int num)
+{
+        u32int aux;
+    u32int count;
+    /* We get the number's length */
+    aux = num;
+    while(aux>10)
+    {
+        aux = aux/10;
+        count++;
+    }
+    return count+1;
 }

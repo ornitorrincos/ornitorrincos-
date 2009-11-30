@@ -1,22 +1,18 @@
 #include "vga.h"
 #include "cpuid.h"
 #include "memory.h"
+#include "colors.h"
 
 void kmain( void* mbd, unsigned int magic )
 {
     char cpu[48];
     u32int mem;
-    /*specify intel syntax for asm*/
-    asm(".intel_syntax noprefix\n");
     
     if ( magic != 0x2BADB002 )
     {
-        kprint("Error booting the kernel");
+        kprint("Error booting the kernel", COMPOSE(BB, BL));
     }
   
-    /* You could either use multiboot.h */
-    /* (http://www.gnu.org/software/grub/manual/multiboot/multiboot.html#multiboot_002eh) */
-    /* or do your offsets yourself. The following is merely an example. */ 
     char * boot_loader_name =(char*) ((long*)mbd)[16];
     
     /* Kernel starts here */
@@ -24,12 +20,11 @@ void kmain( void* mbd, unsigned int magic )
     cpu_model(cpu);
     mem = memsize((struct multiboot_info*) mbd);
     
-    /*mv_cursor(1, 0);
-    kprint(cpu);
-    mv_cursor(2, 0);
-    kprint(boot_loader_name);
-    mv_cursor(3, 0);
-    kprint("ornitorrincos calculator");*/
-    
-    kpint(6543);
+    mv_cursor(0, 1);
+    /*kpint(9567);*/
+    kprint(cpu, COMPOSE(BU, LFL));
+    mv_cursor(0, 2);
+    kprint(boot_loader_name, COMPOSE(BB, FL));
+    mv_cursor(0, 3);
+    kprint("ornitorrincos calculator", COMPOSE(BB, FL));
 }

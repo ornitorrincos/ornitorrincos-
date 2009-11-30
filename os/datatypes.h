@@ -1,6 +1,10 @@
 #ifndef DATATYPES_H
 #define DATATYPES_H
 
+#ifndef NULL
+#define NULL (void*) 0
+#endif
+
 typedef unsigned int u32int;
 typedef          int s32int;
 typedef unsigned short u16int;

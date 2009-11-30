@@ -97,7 +97,8 @@
 
 #ifndef ASM_FILE
 
-/* we define our own grub_uintXX_t types */
+/* we define our own grub_uintXX_t types so
+we don't have to include the GPL licensed one */
 #include "grubtypes.h"
 
 struct multiboot_header

@@ -1,6 +1,6 @@
 CC=i586-elf-gcc
 LD=i586-elf-ld
-CFLAGS=-Wall -Wextra -nostdlib -nostartfiles -nodefaultlibs -masm=intel
+CFLAGS=-Wall -Wextra -nostdlib -nostartfiles -nodefaultlibs
 
 all:
 	nasm -f elf -o loader.o loader.s
