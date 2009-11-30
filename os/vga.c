@@ -1,5 +1,6 @@
 #include "vga.h"
 #include "kstr.h"
+#include "kmath.h"
 #include "colors.h"
 
 u32int grow = 0;
@@ -16,24 +17,16 @@ void kpchar(const char c,const u8int color)
     mv_cursor(gcol+1, grow);
 }
 
-void kpint(const u32int num,const u8int color)
+void kpint(u32int num,const u8int color)
 {
-    u32int aux, aux2, count, r;
-    r = 0;
-    aux = num;
-    aux2 = num;
+    u32int len, digit;
     do
     {
-        count=kdigitlen(aux2);
-        aux=kdigit(aux2);
-        kpchar(0x30+aux, color);
-        aux2 = aux2-(aux*10*count);
-        if(count < 10)
-        {
-            r = 1;
-        }
-    }while(r != 1);
-    
+    len = kdigitlen(num);
+    digit = kdigit(num);
+    kpchar(0x30+digit, color);
+    num = num-digit*power(10, len);
+    } while(len > 2);
 }
 
 void kprint(const char *str, const u8int color)

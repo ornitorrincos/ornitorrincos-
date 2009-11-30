@@ -10,7 +10,8 @@ all:
 	$(CC) -o vga.o -c vga.c $(CFLAGS)
 	$(CC) -o kstr.o -c kstr.c $(CFLAGS)
 	$(CC) -o memory.o -c memory.c $(CFLAGS)
-	$(LD) -T linker.ld -o kernel.bin loader.o kernel.o byte.o vga.o kstr.o cpu_model.o memory.o
+	$(CC) -o kmath.o -c kmath.c $(CFLAGS)
+	$(LD) -T linker.ld -o kernel.bin loader.o kernel.o byte.o vga.o kstr.o cpu_model.o memory.o kmath.o
 clean:
 	rm loader.o
 	rm byte.o

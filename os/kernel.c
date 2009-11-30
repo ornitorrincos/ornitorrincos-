@@ -2,6 +2,7 @@
 #include "cpuid.h"
 #include "memory.h"
 #include "colors.h"
+#include "kstr.h"
 
 void kmain( void* mbd, unsigned int magic )
 {
@@ -21,10 +22,13 @@ void kmain( void* mbd, unsigned int magic )
     mem = memsize((struct multiboot_info*) mbd);
     
     mv_cursor(0, 1);
-    /*kpint(9567);*/
     kprint(cpu, COMPOSE(BU, LFL));
     mv_cursor(0, 2);
-    kprint(boot_loader_name, COMPOSE(BB, FL));
+    kprint("MEMORY AVAIBLE   ", COMPOSE(BU, LFL));
+    mv_cursor(kstrlen("MEMORY AVAIBLE   "), 2);
+    kpint(654321, COMPOSE(BU, LFL));
     mv_cursor(0, 3);
+    kprint(boot_loader_name, COMPOSE(BB, FL));
+    mv_cursor(0, 4);
     kprint("ornitorrincos calculator", COMPOSE(BB, FL));
 }
