@@ -25,8 +25,8 @@ void kpint(u32int num,const u8int color)
     len = kdigitlen(num);
     digit = kdigit(num);
     kpchar(0x30+digit, color);
-    num = num-digit*power(10, len);
-    } while(len > 2);
+    num = num-(digit*power(10, len-1));
+    } while(len > 1);
 }
 
 void kprint(const char *str, const u8int color)

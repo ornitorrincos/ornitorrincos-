@@ -26,7 +26,7 @@ void kmain( void* mbd, unsigned int magic )
     mv_cursor(0, 2);
     kprint("MEMORY AVAIBLE   ", COMPOSE(BU, LFL));
     mv_cursor(kstrlen("MEMORY AVAIBLE   "), 2);
-    kpint(654321, COMPOSE(BU, LFL));
+    kpint(mem, COMPOSE(BU, LFL));
     mv_cursor(0, 3);
     kprint(boot_loader_name, COMPOSE(BB, FL));
     mv_cursor(0, 4);
