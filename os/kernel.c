@@ -31,4 +31,8 @@ void kmain( void* mbd, unsigned int magic )
     kprint(boot_loader_name, COMPOSE(BB, FL));
     mv_cursor(0, 4);
     kprint("ornitorrincos calculator", COMPOSE(BB, FL));
+    mv_cursor(kstrlen("ornitorrincos calculator")+4, 4);
+    kprint("VERSION", COMPOSE(BB, FL));
+    mv_cursor(kstrlen("ornitorrincos calculator")+kstrlen("VERSION")+5, 4);
+    kpint(1, COMPOSE(BB, FL));
 }
