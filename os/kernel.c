@@ -7,7 +7,7 @@
 void kmain( void* mbd, unsigned int magic )
 {
     char cpu[48];
-    u32int mem;
+    memory_t mem;
     
     if ( magic != 0x2BADB002 )
     {
@@ -19,8 +19,19 @@ void kmain( void* mbd, unsigned int magic )
     /* Kernel starts here */
     
     cpu_model(cpu);
-    mem = memsize((struct multiboot_info*) mbd);
+    mem = memaddr((struct multiboot_info*) mbd);
     
+    clear_screen();
+    kprint(boot_loader_name, COMPOSE(BU, LFL));
+    kprint("\n", COMPOSE (BU, LFL));
+    kprint(cpu, COMPOSE(BU, LFL));
+    kprint("\n", COMPOSE(BU, LFL));
+    kprint("LOWER MEMORY ", COMPOSE(BU, LFL));
+    kpint(mem.memory_low, COMPOSE(BU, LFL));
+    kprint("\n", COMPOSE(BU, LFL));
+    kprint("UPPER MEMORY ", COMPOSE(BU, LFL));
+    kpint(mem.memory_high, COMPOSE(BU, LFL));
+    /*
     mv_cursor(0, 1);
     kprint(cpu, COMPOSE(BU, LFL));
     mv_cursor(0, 2);
@@ -35,4 +46,5 @@ void kmain( void* mbd, unsigned int magic )
     kprint("VERSION", COMPOSE(BB, FL));
     mv_cursor(kstrlen("ornitorrincos calculator")+kstrlen("VERSION")+5, 4);
     kpint(1, COMPOSE(BB, FL));
+    */
 }

@@ -1,13 +1,11 @@
 #include "memory.h"
 
-u32int memsize(struct multiboot_info *mbd)
+memory_t memaddr(struct multiboot_info *mbd)
 {
-    multiboot_memory_map_t* mmap = (multiboot_memory_map_t*) (mbd->mmap_addr);
+    memory_t local;
     
-    while(mmap < (mbd->mmap_addr + mbd->mmap_length))
-    {
-        mmap = (multiboot_memory_map_t*) ((u32int*)mmap + mmap->size + sizeof(u32int));
-    }
+    local.memory_low = (*mbd).mem_lower;
+    local.memory_high = (*mbd).mem_upper;
     
-    return (*mmap).size;
+    return local;
 }

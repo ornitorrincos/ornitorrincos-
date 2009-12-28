@@ -14,6 +14,12 @@ typedef struct multiboot_memory_map
     u32int type;
 } multiboot_memory_map_t;
 
-u32int memsize(struct multiboot_info *mbd);
+typedef struct memory
+{
+	u32int memory_low;
+	u32int memory_high;
+} memory_t;
+
+memory_t memaddr(struct multiboot_info *mbd);
 
 #endif
