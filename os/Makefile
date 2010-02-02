@@ -1,22 +1,22 @@
 CC=i586-elf-gcc
 LD=i586-elf-ld
-CFLAGS=-Wall -Wextra -nostdlib -nostartfiles -nodefaultlibs
+CFLAGS=-O0 -Wall -Wextra -ansi -pedantic -nostdlib -nostartfiles -nodefaultlibs
+OBJS=kernel.o vga.o kstr.o memory.o kmath.o
 
-all:
+all: asm $(OBJS)
+	$(LD) -T linker.ld -o kernel.bin loader.o kernel.o byte.o vga.o kstr.o cpu_model.o memory.o kmath.o
+
+asm:
 	nasm -f elf -o loader.o loader.s
 	nasm -f elf -o byte.o byte.s
 	nasm -f elf -o cpu_model.o cpu_model.s
-	$(CC) -o kernel.o -c kernel.c $(CFLAGS)
-	$(CC) -o vga.o -c vga.c $(CFLAGS)
-	$(CC) -o kstr.o -c kstr.c $(CFLAGS)
-	$(CC) -o memory.o -c memory.c $(CFLAGS)
-	$(CC) -o kmath.o -c kmath.c $(CFLAGS)
-	$(LD) -T linker.ld -o kernel.bin loader.o kernel.o byte.o vga.o kstr.o cpu_model.o memory.o kmath.o
+
+%.o : %.c
+	$(CC) -o $(.SOURCE) -c $(.SOURCE) $(CFLAGS)
+
 clean:
 	rm loader.o
 	rm byte.o
 	rm cpu_model.o
-	rm kernel.o
-	rm vga.o
-	rm kstr.o
+	rm $(OBJS)
 	rm kernel.bin

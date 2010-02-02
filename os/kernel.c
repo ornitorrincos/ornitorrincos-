@@ -8,16 +8,13 @@ void kmain( void* mbd, unsigned int magic )
 {
     char cpu[48];
     memory_t mem;
-    
+    char *boot_loader_name;
     if ( magic != 0x2BADB002 )
     {
         kprint("Error booting the kernel", COMPOSE(BB, BL));
     }
   
-    char * boot_loader_name =(char*) ((long*)mbd)[16];
-    
-    /* Kernel starts here */
-    
+    boot_loader_name =(char*) ((long*)mbd)[16];  
     cpu_model(cpu);
     mem = memaddr((struct multiboot_info*) mbd);
     
@@ -31,20 +28,7 @@ void kmain( void* mbd, unsigned int magic )
     kprint("\n", COMPOSE(BU, LFL));
     kprint("UPPER MEMORY ", COMPOSE(BU, LFL));
     kpint(mem.memory_high, COMPOSE(BU, LFL));
-    /*
-    mv_cursor(0, 1);
-    kprint(cpu, COMPOSE(BU, LFL));
-    mv_cursor(0, 2);
-    kprint("MEMORY AVAIBLE   ", COMPOSE(BU, LFL));
-    mv_cursor(kstrlen("MEMORY AVAIBLE   "), 2);
-    kpint(mem, COMPOSE(BU, LFL));
-    mv_cursor(0, 3);
-    kprint(boot_loader_name, COMPOSE(BB, FL));
-    mv_cursor(0, 4);
-    kprint("ornitorrincos calculator", COMPOSE(BB, FL));
-    mv_cursor(kstrlen("ornitorrincos calculator")+4, 4);
-    kprint("VERSION", COMPOSE(BB, FL));
-    mv_cursor(kstrlen("ornitorrincos calculator")+kstrlen("VERSION")+5, 4);
-    kpint(1, COMPOSE(BB, FL));
-    */
+    kprint("\n", COMPOSE(BB, FL));
+    /*dump_memory((u32int*) 0x100000, 5);*/
+    dump_memory((u32int*) 0xB8000, 5);
 }

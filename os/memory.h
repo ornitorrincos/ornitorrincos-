@@ -3,6 +3,8 @@
 
 #include "datatypes.h"
 #include "multiboot.h"
+#include "vga.h"
+#include "colors.h"
 
 typedef struct multiboot_memory_map
 {
@@ -21,5 +23,10 @@ typedef struct memory
 } memory_t;
 
 memory_t memaddr(struct multiboot_info *mbd);
+
+/* prints to screen the memory area that starts at addr and continues amount 
+*  Take into account the it print two word(4 bytes) for each amount unit
+*/
+void dump_memory(u32int *addr, u32int amount);
 
 #endif

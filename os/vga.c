@@ -41,6 +41,43 @@ void kpint(u32int num,const u8int color)
     } while(len > 1);
 }
 
+/* prints integer as hexadecimal */
+void kphex(u32int num, const u8int color)
+{
+    s32int leftover, len;
+    char tmp[8];
+    s32int i;
+    
+    kprint("0x", color);
+    for(i=0;i<8;i++)
+    {
+        tmp[i] = 0x30;
+    }
+    
+    /* we reset the counter */
+    i = 0;
+    
+    do
+    {
+        len = kdigitlen(num);
+        leftover = num%16;
+        if((leftover < 10) && (leftover >= 0))
+        {
+            tmp[i] = 0x30+leftover;
+        } else
+        {
+            tmp[i] = 55+leftover;
+        }
+        num = num/16;
+        i++;
+    } while(num != 0);
+    
+    for(i=7;i>=0;i--)
+    {
+        kpchar(tmp[i], color);
+    }
+}
+
 /* Prints a string to current cursor location */
 void kprint(const char *str, const u8int color)
 {
