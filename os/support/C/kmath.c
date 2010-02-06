@@ -1,4 +1,4 @@
-#include "kmath.h"
+#include <kmath.h>
 
 u32int power(u32int base, u32int exp)
 {

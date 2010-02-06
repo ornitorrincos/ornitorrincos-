@@ -14,7 +14,7 @@ void  dump_memory(u32int *addr, u32int amount)
 {
     u32int i;
     kprint("Memory dump address: ", COMPOSE(BB, FL));
-    kphex(addr, COMPOSE(BB, FL));
+    kphex((u32int) addr, COMPOSE(BB, FL));
     kprint("\n", COMPOSE(BB, FL));
     for(i=0;i<amount;i++)
     {
