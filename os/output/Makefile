@@ -1,6 +1,6 @@
 include ../Makefile.inc
 
-OBJS=byte.o cpu_model.o kmath.o kstr.o memory.o vga.o loader.o kernel.o
+OBJS=byte.o cpu_model.o kmath.o kstr.o memory.o vga.o loader.o kernel.o gdt.o gdt_asm.o
 
 all:
 	$(LD) -T ../linker.ld $(OBJS) -o ../kernel.bin

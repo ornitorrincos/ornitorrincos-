@@ -3,6 +3,7 @@
 #include "memory.h"
 #include "colors.h"
 #include "kstr.h"
+#include "gdt.h"
 
 void kmain( void* mbd, unsigned int magic )
 {
@@ -13,6 +14,8 @@ void kmain( void* mbd, unsigned int magic )
     {
         kprint("Error booting the kernel", COMPOSE(BB, BL));
     }
+    
+    gdt_install();
   
     boot_loader_name =(char*) ((long*)mbd)[16];  
     cpu_model(cpu);

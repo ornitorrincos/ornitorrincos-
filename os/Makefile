@@ -1,6 +1,6 @@
 include Makefile.inc
 
-SUBDIRS= main support memory screen
+SUBDIRS= main support memory screen setup
 
 all:
 	@for i in $(SUBDIRS); do\
