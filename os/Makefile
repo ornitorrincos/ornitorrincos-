@@ -1,15 +1,26 @@
-include Makefile.inc
+BASEPATH=/home/ilcra1989/VM/prog/os
+INC=$(BASEPATH)/includes
+OUTPUT=$(BASEPATH)/output
+CC=i586-elf-gcc
+LD=i586-elf-ld
+CFLAGS=-O0 -I$(INC) -Wall -Wextra -std=c99 -pedantic -nostdlib -nostartfiles -nodefaultlibs
+LINKER=$(BASEPATH)/linker.ld
+AS=nasm -w-orphan-labels -f elf
 
-SUBDIRS= main support memory screen setup
+PROJDIRS := main memory screen setup support
 
-all:
-	@for i in $(SUBDIRS); do\
-	echo "Building $$i";\
-	(cd $$i; $(MAKE) all); done
-	(cd output; $(MAKE) all);
-clean:
-	@for i in $(SUBDIRS); do\
-	echo "Cleaning $$i";\
-	(cd $$i; $(MAKE) clean); done
-	(cd output; $(MAKE) clean);
-	rm kernel.bin
+CFILES := $(shell find $(PROJDIRS) -mindepth 1 -maxdepth 3 -name "*.c")
+ASFILES := $(shell find $(PROJDIRS) -mindepth 1 -maxdepth 3 -name "*.s")
+
+OBJFILES := $(patsubst %.c,%.o,$(CFILES))
+SOBJFILES := $(patsubst %.s,%.os,$(ASFILES))
+OUTFILES := $(shell find $(OUTPUT) -mindepth 1 -maxdepth 3 -name "*.o*")
+
+all: $(OBJFILES) $(SOBJFILES)
+	$(LD) -T $(LINKER) $(OUTFILES) -o $(BASEPATH)/kernel.bin
+	
+%.o: %.c
+	$(CC) -I$(INC) $(CFLAGS) -c $^ -o $(OUTPUT)/$(shell basename $@)
+
+%.os: %.s
+	$(AS) $^ -o $(OUTPUT)/$(shell basename $@)

@@ -23,3 +23,13 @@ void  dump_memory(u32int *addr, u32int amount)
         addr += 1;
     }
 }
+
+void kmemset(mptr *mem, u32int constant, u32int size)
+{
+    u32int i;
+    for(i=0;i<size;i++)
+    {
+        *mem= constant;
+        mem++;
+    }
+}

@@ -14,4 +14,7 @@ typedef          short s16int;
 typedef unsigned char u8int;
 typedef          char s8int;
 
+/* Memory operations related datatypes */
+typedef unsigned char mptr;
+
 #endif
