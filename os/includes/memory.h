@@ -27,7 +27,7 @@ memory_t memaddr(struct multiboot_info *mbd);
 /* prints to screen the memory area that starts at addr and continues amount 
 *  Take into account the it print two word(4 bytes) for each amount unit
 */
-void dump_memory(u32int *addr, u32int amount);
+void dump_memory(mptr *addr, u32int amount);
 void kmemset(mptr *mem, u32int constant, u32int size);
 
 #endif

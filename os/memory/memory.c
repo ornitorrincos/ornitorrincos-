@@ -10,7 +10,7 @@ memory_t memaddr(struct multiboot_info *mbd)
     return local;
 }
 
-void  dump_memory(u32int *addr, u32int amount)
+void  dump_memory(mptr *addr, u32int amount)
 {
     u32int i;
     kprint("Memory dump address: ", COMPOSE(BB, FL));

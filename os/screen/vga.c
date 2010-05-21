@@ -8,7 +8,7 @@ u32int grow = 0;
 u32int gcol = 0;
 
 /* Prints a character to current cursor location */
-void kpchar(const char c,const u8int color)
+void kpchar(const u32int c,const u32int color)
 {
     u8int *videoram = (u8int*) VIDEO + 2*(grow*80 + gcol);
     
@@ -28,7 +28,7 @@ void kpchar(const char c,const u8int color)
 }
 
 /* Prints an integer to current cursor location */
-void kpint(u32int num,const u8int color)
+void kpint(u32int num,const u32int color)
 {
     u32int len, digit;
     do
@@ -42,10 +42,10 @@ void kpint(u32int num,const u8int color)
 }
 
 /* prints integer as hexadecimal */
-void kphex(u32int num, const u8int color)
+void kphex(u32int num, const u32int color)
 {
     s32int leftover, len;
-    char tmp[8];
+    u8int tmp[8];
     s32int i;
     
     kprint("0x", color);
@@ -79,11 +79,11 @@ void kphex(u32int num, const u8int color)
 }
 
 /* Prints a string to current cursor location */
-void kprint(const char *str, const u8int color)
+void kprint(const char *str, const u32int color)
 {
     while(*str != '\0')
     {
-        kpchar(*str, color);
+        kpchar((u8int) *str, color);
         str++;
     }
 }
@@ -100,7 +100,7 @@ void mv_cursor(u32int col, u32int row)
     outb(0x3D5, pos);
     
     outb(0x3D4, 0x0E);
-    outb(0x3D5, pos>>8);
+    outb(0x3D5, (u32int) pos>>8);
 }
 
 /* Cleans the screen */

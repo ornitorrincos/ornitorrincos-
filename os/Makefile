@@ -1,9 +1,15 @@
+PATH_CUSTOM=/usr/cross/bin/
 BASEPATH=/home/ilcra1989/VM/prog/os
 INC=$(BASEPATH)/includes
 OUTPUT=$(BASEPATH)/output
-CC=i586-elf-gcc
-LD=i586-elf-ld
-CFLAGS=-O0 -I$(INC) -Wall -Wextra -std=c99 -pedantic -nostdlib -nostartfiles -nodefaultlibs
+CC_EXEC=i586-elf-gcc
+LD_EXEC=i586-elf-ld
+CC=$(PATH_CUSTOM)$(CC_EXEC)
+LD=$(PATH_CUSTOM)$(LD_EXEC)
+CFLAGS := -O0 -I$(INC) -Wall -Wextra -std=c99 -pedantic -nostdlib -nostartfiles -nodefaultlibs \
+          -Wshadow -Wpointer-arith -Wwrite-strings -Wmissing-prototypes -Wmissing-declarations -Wcast-align \
+          -Wredundant-decls -Wnested-externs -Winline -Wstrict-prototypes -Wno-long-long
+# -Wconversion
 LINKER=$(BASEPATH)/linker.ld
 AS=nasm -w-orphan-labels -f elf
 

@@ -3,8 +3,8 @@
 
 #include "datatypes.h"
 
-void outb(u16int port, u8int value);
-u8int inb(u16int port);
-u16int inw(u16int port);
+void outb(u32int port, u32int value);
+u8int inb(u32int port);
+u16int inw(u32int port);
 
 #endif

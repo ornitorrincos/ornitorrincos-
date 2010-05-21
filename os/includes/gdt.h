@@ -16,7 +16,7 @@ struct gdt_ptr
     u32int base;
 } __attribute__((packed));
 
-void gdt_flush();
+void gdt_flush(void);
 
 void gdt_set_gate(s32int num, u64int base, u64int limit, u8int access, u8int gran);
-void gdt_install();
+void gdt_install(void);

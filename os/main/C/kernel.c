@@ -1,12 +1,12 @@
 #include <main.h>
 #include <stub.h>
 
-void kmain( void* mbd, unsigned int magic )
+void kmain( void* mbd, u32int magic )
 {
     
     if ( magic != 0x2BADB002 )
     {
-        kprint("Error booting the kernel", COMPOSE(BB, BL));
+        kprint("Error booting the kernel", COMPOSE(BB, FL));
     }
     
     startup(mbd);
