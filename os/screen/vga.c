@@ -42,14 +42,14 @@ void kpint(u32int num,const u32int color)
 }
 
 /* prints integer as hexadecimal */
-void kphex(u32int num, const u32int color)
+void kphex(u32int num, const u32int color, const s32int size)
 {
     s32int leftover, len;
-    u8int tmp[8];
+    u8int tmp[size];
     s32int i;
     
-    kprint("0x", color);
-    for(i=0;i<8;i++)
+//    kprint("0x", color);
+    for(i=0;i<size;i++)
     {
         tmp[i] = 0x30;
     }
@@ -72,7 +72,7 @@ void kphex(u32int num, const u32int color)
         i++;
     } while(num != 0);
     
-    for(i=7;i>=0;i--)
+    for(i=size-1;i>=0;i--)
     {
         kpchar(tmp[i], color);
     }

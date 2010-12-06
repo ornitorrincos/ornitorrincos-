@@ -23,10 +23,10 @@ SOBJFILES := $(patsubst %.s,%.os,$(ASFILES))
 OUTFILES := $(shell find $(OUTPUT) -mindepth 1 -maxdepth 3 -name "*.o*")
 
 all: $(OBJFILES) $(SOBJFILES)
-	$(LD) -T $(LINKER) $(OUTFILES) -o $(BASEPATH)/kernel.bin
+	@$(LD) -T $(LINKER) $(OUTFILES) -o $(BASEPATH)/kernel.bin
 	
 %.o: %.c
-	$(CC) -I$(INC) $(CFLAGS) -c $^ -o $(OUTPUT)/$(shell basename $@)
+	@$(CC) -I$(INC) $(CFLAGS) -c $^ -o $(OUTPUT)/$(shell basename $@)
 
 %.os: %.s
-	$(AS) $^ -o $(OUTPUT)/$(shell basename $@)
+	@$(AS) $^ -o $(OUTPUT)/$(shell basename $@)

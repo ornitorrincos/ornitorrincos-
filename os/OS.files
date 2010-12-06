@@ -26,7 +26,14 @@ support/C/kmath.c
 support/C/kstr.c
 update_image.sh
 test.sh
-Makefile
 linker.ld
 LICENSE
 down_env.sh
+support/asm/byte.s
+support/asm/cpu_model.s
+main/asm/loader.s
+main/asm/stub.s
+setup/asm/gdt_asm.s
+setup/asm/idt_asm.s
+setup/asm/isr_asm.s
+

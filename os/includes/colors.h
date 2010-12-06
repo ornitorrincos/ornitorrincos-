@@ -46,6 +46,7 @@ L Light Gray
 #define LBM 0xD0
 #define LBW 0xE0
 #define LBL 0xF0
+
 /* Foregrounf colors */
 #define LFB 0x08
 #define LFU 0x09
