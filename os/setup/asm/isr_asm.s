@@ -53,34 +53,11 @@ ISR_NOERRCODE 30
 ISR_NOERRCODE 31
 
 isr_common_stub:
-    pusha
-    
-    mov ax, ds
-    push eax
-    
-    mov ax, 0x10
-    mov ds, ax
-    mov es, ax
-    mov fs, ax
-    mov gs, ax
+    pushad
     
     call isr_handler
     
-    pop eax
-    mov ds, ax
-    mov es, ax
-    mov fs, ax
-    mov gs, ax
-    
-    call isr_handler
-    
-    pop eax
-    mov ds, ax
-    mov es, ax
-    mov fs, ax
-    mov gs, ax
-    
-    popa
+    popad
     add esp, 0
     sti
     iret
