@@ -1,5 +1,7 @@
 #include "memory.h"
 
+#define DUMPCOLUMNS 18
+
 memory_t memaddr(struct multiboot_info *mbd)
 {
     memory_t local;
@@ -13,14 +15,25 @@ memory_t memaddr(struct multiboot_info *mbd)
 void  dump_memory(mptr *addr, u32int amount)
 {
     u32int i;
+    u32int ColumnCount=0;
+
     kprint("Memory dump address: ", COMPOSE(BB, FL));
     kphex((u32int) addr, COMPOSE(BB, FL),5);
     kprint("\n", COMPOSE(BB, FL));
     for(i=0;i<amount;i++)
     {
-        kphex(*addr, COMPOSE(BB, FL),2);
-        kprint(" ", COMPOSE(BB, FL));
-        addr += 1;
+        if(ColumnCount<DUMPCOLUMNS)
+        {
+            ColumnCount++;
+            kphex(*addr, COMPOSE(BB, FL),2);
+            kprint(" ", COMPOSE(BB, FL));
+            addr += 1;
+        }
+        else
+        {
+            ColumnCount=0;
+            kprint("\n", COMPOSE(BB, FL));
+        }
     }
 }
 

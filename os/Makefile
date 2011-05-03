@@ -1,5 +1,5 @@
-PATH_CUSTOM=/usr/cross/bin/
-BASEPATH=/home/ilcra1989/VM/prog/os
+PATH_CUSTOM=/usr/local/cross/install/bin/
+BASEPATH=/home/ilcra1989/dev/misc/os
 INC=$(BASEPATH)/includes
 OUTPUT=$(BASEPATH)/output
 CC_EXEC=i586-elf-gcc
