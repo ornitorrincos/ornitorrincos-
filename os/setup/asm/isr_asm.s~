@@ -1,0 +1,3 @@
+[BITS 32]
+
+[GLOBAL isr_handler]

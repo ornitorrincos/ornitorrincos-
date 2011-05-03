@@ -1,0 +1,10 @@
+#include <isr.h>
+#include <vga.h>
+#include <colors.h>
+
+void isr_handler(struct registers reg)
+{
+    kprint("Interrupt code: ", COMPOSE(BU, LFL));
+    kprint(reg.int_no, COMPOSE(BU, LFL));
+    kprint("\n", COMPOSE(BB, FL));
+}

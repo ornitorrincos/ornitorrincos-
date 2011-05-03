@@ -1,0 +1,23 @@
+#include <idt.h>
+
+struct idt_entry idt[256];
+struct idt_ptr idtp;
+
+void idt_set_gate(u8int num, u64int base, u16int sel, u8int flags)
+{
+    idt[num].sel = sel;
+    idt[num].flags = flags;
+    idt[num].always0 = 0;
+    idt[num].base_lo = base & 0xFFFF;
+    idt[num].base_hi = (base >> 16) & 0xFFFF;
+}
+
+void idt_install()
+{
+    idtp.limit = (sizeof(struct idt_entry) * 256) -1;
+    idtp.base = &idt;
+    
+    kmemset(&idt, 0, sizeof(struct idt_entry) * 256) -1;
+    
+    idt_load();
+}
