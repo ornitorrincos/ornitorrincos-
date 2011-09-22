@@ -1,9 +1,9 @@
-PATH_CUSTOM=/usr/cross/bin/
-BASEPATH=/home/ilcra1989/VM/prog/os
+PATH_CUSTOM=/usr/local/cross/bin/
+BASEPATH=/home/ilcra1989/osdev/github/os
 INC=$(BASEPATH)/includes
 OUTPUT=$(BASEPATH)/output
-CC_EXEC=i586-elf-gcc
-LD_EXEC=i586-elf-ld
+CC_EXEC=i686-elf-gcc
+LD_EXEC=i686-elf-ld
 CC=$(PATH_CUSTOM)$(CC_EXEC)
 LD=$(PATH_CUSTOM)$(LD_EXEC)
 CFLAGS := -O0 -I$(INC) -Wall -Wextra -std=c99 -pedantic -nostdlib -nostartfiles -nodefaultlibs \
